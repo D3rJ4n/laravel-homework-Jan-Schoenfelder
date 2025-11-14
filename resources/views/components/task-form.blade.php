@@ -1,13 +1,23 @@
 <form method="POST" action="/tasks" class="relative">
     @csrf
-    <div
-        class="px-4 py-3 space-y-2 bg-white rounded-lg overflow-hidden border border-gray-300 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
-        <h2 class="text-base font-semibold text-gray-800">New Task</h2>
+        <div class="px-4 py-3 space-y-2 bg-white rounded-lg overflow-hidden border border-gray-300 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
+            <div class="flex justify-between">
+                <h2 class="text-base font-semibold text-gray-800">New Task</h2>
+               <div class="dropdown">
+                    <select id="priority" name="priority" class="text-sm border rounded px-2 py-1">
+                        <option value="" disabled selected>Priority</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+            </div>
         <div>
             <label for="text" class="sr-only ">Task</label>
             <textarea type="text" rows="2" id="text" name="text" placeholder="What do you want to do?"
                 class="block w-full resize-none border-0 py-0 text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm sm:leading-6"></textarea>
         </div>
+    
         <div class="flex justify-between items-center">
             <div class="text-xs text-red-500">
                 @error('text')
@@ -20,4 +30,5 @@
             </button>
         </div>
     </div>
+    
 </form>

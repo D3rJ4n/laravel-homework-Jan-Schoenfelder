@@ -15,9 +15,8 @@
             There are no incomplete tasks, create a new Task.
             </div>
         @else
-            @foreach ($tasks->where('completed', false) as $task)
-           
-            <div class="flex items-center gap-16 py-2 border-t border-gray-300">
+            @foreach ($tasks->where('completed', false)->where('priority', 'high') as $task)
+                 <div class="flex items-center gap-16 py-2 border-t border-gray-300">
                 <!-- Checkboxen links -->
                 <div class="flex gap-4">
                     <form method="POST" action="/tasks/{{ $task->id }}/complete">
@@ -37,9 +36,50 @@
                 </div>
             </div>
         @endforeach
+            @foreach ($tasks->where('completed', false)->where('priority', 'medium') as $task)
+                  <div class="flex items-center gap-16 py-2 border-t border-gray-300">
+                <!-- Checkboxen links -->
+                <div class="flex gap-4">
+                    <form method="POST" action="/tasks/{{ $task->id }}/complete">
+                        @csrf
+                        <button class="w-5 h-5 border-2 border-gray-600 bg-white hover:bg-green-100" type="submit"></button>
+                    </form>
+                    <form method="POST" action="/tasks/{{ $task->id }}">
+                        @method('DELETE')
+                        @csrf
+                        <button class="w-5 h-5 border-2 border-gray-600 bg-white hover:bg-red-100 ml-16" type="submit">✗</button>
+                    </form>
+                </div>
+                
+                <!-- Task Text rechts -->
+                <div class="flex-1 text-center">
+                    <span class="text-gray-800">{{ $task->text }}</span>
+                </div>
+            </div>
+            @endforeach
+        @foreach ($tasks->where('completed', false)->where('priority', 'low') as $task)
+                  <div class="flex items-center gap-16 py-2 border-t border-gray-300">
+                <!-- Checkboxen links -->
+                <div class="flex gap-4">
+                    <form method="POST" action="/tasks/{{ $task->id }}/complete">
+                        @csrf
+                        <button class="w-5 h-5 border-2 border-gray-600 bg-white hover:bg-green-100" type="submit"></button>
+                    </form>
+                    <form method="POST" action="/tasks/{{ $task->id }}">
+                        @method('DELETE')
+                        @csrf
+                        <button class="w-5 h-5 border-2 border-gray-600 bg-white hover:bg-red-100 ml-16" type="submit">✗</button>
+                    </form>
+                </div>
+                
+                <!-- Task Text rechts -->
+                <div class="flex-1 text-center">
+                    <span class="text-gray-800">{{ $task->text }}</span>
+                </div>
+            </div>
+            @endforeach
         @endif
     </div>
-
     <!-- Completed Tasks -->
     @if($tasks->where('completed', true)->count() > 0)
         <div class="bg-green-50 border-2 border-green-400 rounded-lg shadow-lg p-8">
