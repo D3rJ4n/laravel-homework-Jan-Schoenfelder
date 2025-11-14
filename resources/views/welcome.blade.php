@@ -32,7 +32,7 @@
                     </a>
                 </div>
                 <div class="text-2xl font-bold">
-                    Todolu
+                    ToDo-List
                 </div>
                 <div class="w-10">
 
