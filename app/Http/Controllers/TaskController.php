@@ -22,7 +22,7 @@ class TaskController extends Controller
 
     public function complete(Task $task)
     {
-        // TODO complete task
+         $task->update(['completed' => !$task->completed]);
 
         return redirect()->back();
     }
