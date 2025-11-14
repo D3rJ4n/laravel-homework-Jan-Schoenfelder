@@ -1,6 +1,6 @@
   <div class="mt-4">
-    
     <!-- Uncompleted Tasks -->
+
     <div class="bg-white border-2 border-gray-400 rounded-lg shadow-lg p-8 mb-8">
         <div class="flex items-center gap-16 pb-4 border-b-2 border-gray-400 mb-4">
             <div class="flex gap-4">
@@ -9,8 +9,14 @@
             </div>
             <h2 class="flex-1 text-sm font-semibold text-center">Task</h2>
         </div>
-        
-        @foreach ($tasks->where('completed', false) as $task)
+
+        @if($tasks->where('completed', false)->count()===0)
+            <div class="text-center py-8 text-gray-500">
+            There are no incomplete tasks
+            </div>
+        @else
+            @foreach ($tasks->where('completed', false) as $task)
+           
             <div class="flex items-center gap-16 py-2 border-t border-gray-300">
                 <!-- Checkboxen links -->
                 <div class="flex gap-4">
@@ -31,6 +37,7 @@
                 </div>
             </div>
         @endforeach
+        @endif
     </div>
 
     <!-- Completed Tasks -->
@@ -73,7 +80,7 @@
    
                             <!-- 2nd Option -->
 
-                            
+
 <!-- <div class="mt-4">
     <h2 class="text-xl font-bold text-center mb-8">Tasks</h2>
     <div class="bg-amber-100 border-4 border-amber-800 rounded-xl p-8 shadow-xl">
