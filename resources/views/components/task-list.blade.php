@@ -12,7 +12,7 @@
 
         @if($tasks->where('completed', false)->count()===0)
             <div class="text-center py-8 text-gray-500">
-            There are no incomplete tasks
+            There are no incomplete tasks, create a new Task.
             </div>
         @else
             @foreach ($tasks->where('completed', false) as $task)
