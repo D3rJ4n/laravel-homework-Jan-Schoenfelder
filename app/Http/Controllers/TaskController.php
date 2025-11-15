@@ -11,12 +11,12 @@ class TaskController extends Controller
     {
         $request->validate([
             'text' => 'required|string|max:255',
-            'priority' => 'required|in:low,medium,high'
+            'priority' => 'nullable|in:low,medium,high'
         ]);
 
         $task = Task::create([
             'text' => $request->text,
-            'priority' => $request->priority,
+            'priority' => $request->priority ?: 'low'
         ]);
 
         return redirect()->back();

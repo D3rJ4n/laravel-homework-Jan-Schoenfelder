@@ -8,7 +8,9 @@
                 <div class="w-16 text-center text-sm font-semibold">Delete</div>
             </div>
             <h2 class="flex-1 text-sm font-semibold text-center">Task</h2>
+            <div class="w-20 text-center text-sm font-semibold">Priority</div>
         </div>
+        
 
         @if($tasks->where('completed', false)->count()===0)
             <div class="text-center py-8 text-gray-500">
@@ -34,7 +36,14 @@
                 <div class="flex-1 text-center">
                     <span class="text-gray-800">{{ $task->text }}</span>
                 </div>
-            </div>
+                
+             <!-- Priority ganz rechts -->
+    <div class="w-20 text-center">
+        <span class="text-xs font-semibold {{ $task->priority === 'high' ? 'text-red-600' : ($task->priority === 'medium' ? 'text-yellow-600' : 'text-gray-600') }}">
+            {{ strtoupper($task->priority) }}
+        </span>
+    </div>
+</div>
         @endforeach
             @foreach ($tasks->where('completed', false)->where('priority', 'medium') as $task)
                   <div class="flex items-center gap-16 py-2 border-t border-gray-300">
@@ -55,7 +64,12 @@
                 <div class="flex-1 text-center">
                     <span class="text-gray-800">{{ $task->text }}</span>
                 </div>
-            </div>
+            <div class="w-20 text-center">
+        <span class="text-xs font-semibold {{ $task->priority === 'high' ? 'text-red-600' : ($task->priority === 'medium' ? 'text-yellow-600' : 'text-gray-600') }}">
+            {{ strtoupper($task->priority) }}
+        </span>
+    </div>
+</div>
             @endforeach
         @foreach ($tasks->where('completed', false)->where('priority', 'low') as $task)
                   <div class="flex items-center gap-16 py-2 border-t border-gray-300">
@@ -76,7 +90,12 @@
                 <div class="flex-1 text-center">
                     <span class="text-gray-800">{{ $task->text }}</span>
                 </div>
-            </div>
+            <div class="w-20 text-center">
+        <span class="text-xs font-semibold {{ $task->priority === 'high' ? 'text-red-600' : ($task->priority === 'medium' ? 'text-yellow-600' : 'text-gray-600') }}">
+            {{ strtoupper($task->priority) }}
+        </span>
+    </div>
+</div>
             @endforeach
         @endif
     </div>
@@ -87,11 +106,11 @@
             
             <div class="flex items-center gap-16 pb-4 border-b-2 border-green-400 mb-4">
                 <div class="flex gap-4">
-                    <div class="w-16 text-center text-sm font-semibold">Uncomplete</div>
-                    <div class="w-16 text-center text-sm font-semibold">Delete</div>
-                </div>
-                <div class="flex-1 text-sm font-semibold text-center">Task</div>
+                <div class="w-16 text-center text-sm font-semibold">Uncomplete</div>
+                <div class="w-16 text-center text-sm font-semibold">Delete</div>
             </div>
+            <h2 class="flex-1 text-sm font-semibold text-center mr-36">Task</h2>
+        </div>
             
             @foreach ($tasks->where('completed', true) as $task)
                 <div class="flex items-center gap-16 py-2 border-t border-gray-300">
@@ -110,7 +129,7 @@
                     
                     <!-- Task Text rechts -->
                     <div class="flex-1 text-center">
-                        <span class="text-gray-800 line-through">{{ $task->text }}</span>
+                        <span class="text-gray-800 line-through mr-36">{{ $task->text }}</span>
                     </div>
                 </div>
             @endforeach
